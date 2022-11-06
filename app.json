@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Myntra Styling Services",
+    "slug": "myntra-styling-services",
+    "version": "1.0.0",
+    "owner": "teja_3028",
+    "orientation": "portrait",
+    "icon": "./assets/PersonalStylistLogo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/PersonalStylistLogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#cc7178"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/PersonalStylistLogo.png",
+        "backgroundColor": "#cc7178"
+      }
+    },
+    "web": {
+      "favicon": "./assets/MyntraHomeLogo.png"
+    }
+  }
+}
