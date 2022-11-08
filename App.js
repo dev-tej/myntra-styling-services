@@ -1,12 +1,15 @@
 import "react-native-gesture-handler";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "./screens/Navigation";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <Navigation />
+      <NavigationContainer>
+        <Navigation />
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }

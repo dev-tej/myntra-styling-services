@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import BookSessions from "./BookSessions";
+import BookSessionsInfo from "./BookSessionsInfo";
 import CompletedSessions from "./CompletedSessions";
 // import { SessionContainer, TabsContainer, TabItem } from "./components";
 
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Tabs = () => {
+const Tabs = (props) => {
+  const { sessionData, number } = props;
   const [selectedTab, setSelectedTab] = useState("Upcoming Sessions");
 
   return (
@@ -71,9 +72,12 @@ const Tabs = () => {
       </View>
       <View style={styles.selectedTabDetails}>
         {selectedTab === "Upcoming Sessions" ? (
-          <BookSessions />
+          <BookSessionsInfo bookingSessionData={sessionData} number={number} />
         ) : (
-          <CompletedSessions />
+          <CompletedSessions
+            completedSessionData={sessionData}
+            number={number}
+          />
         )}
       </View>
     </View>

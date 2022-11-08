@@ -1,14 +1,26 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// import { initializeApp } from "firebase/app";
+import { getAuth, signOut } from "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_RIREBASE_APP_ID,
+export const firebaseConfig = {
+  apiKey: "AIzaSyDfpfUB-O2VJkVMs8rjUk49HzIiANIe-QM",
+  authDomain: "react-native-app-8d9ee.firebaseapp.com",
+  projectId: "react-native-app-8d9ee",
+  storageBucket: "react-native-app-8d9ee.appspot.com",
+  messagingSenderId: "782615176824",
+  appId: "1:782615176824:web:d7c62ef97b55a6be98ef8d",
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+let app;
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig);
+}
+
+// const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+
+export function logout() {
+  return signOut(auth);
+}
