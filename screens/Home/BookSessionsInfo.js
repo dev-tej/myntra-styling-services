@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {
   View,
   Text,
@@ -8,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
+import { apiBase } from "../envinronment";
 import moment from "moment";
 import axios from "axios";
 import Icon from "react-native-vector-icons/Entypo";
@@ -23,11 +25,6 @@ const BookSessionsInfo = (props) => {
   const [loading, setLoading] = useState(false);
   const [showError, setShowError] = useState("");
   const navigation = useNavigation();
-
-  function handleCouponChange(e) {
-    let output = e?.target?.value;
-    setCouponValue(output);
-  }
 
   let fetchCouponData = async () => {
     setLoading(true);
@@ -104,7 +101,7 @@ const BookSessionsInfo = (props) => {
                 "YYYYMMDD, hh:mm A"
               ).diff(moment(), "days");
               return (
-                <View>
+                <View key={index}>
                   <View style={styles.exactSessionDetails}>
                     <View style={styles.exactSessionContainer}>
                       <Text style={styles.exactSessionDate}>

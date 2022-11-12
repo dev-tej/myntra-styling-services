@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import BookSessionsInfo from "./BookSessionsInfo";
-import CompletedSessions from "./CompletedSessions";
-// import { SessionContainer, TabsContainer, TabItem } from "./components";
+import CompletedSessionsInfo from "./CompletedSessionsInfo";
 
 const TabsData = [
   {
@@ -74,7 +73,7 @@ const Tabs = (props) => {
         {selectedTab === "Upcoming Sessions" ? (
           <BookSessionsInfo bookingSessionData={sessionData} number={number} />
         ) : (
-          <CompletedSessions
+          <CompletedSessionsInfo
             completedSessionData={sessionData}
             number={number}
           />

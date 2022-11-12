@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
 import firebase from "firebase/compat/app";

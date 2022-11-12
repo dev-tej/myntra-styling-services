@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -10,7 +11,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useRef } from "react";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { firebaseConfig, auth } from "../../firebase";
+import { firebaseConfig } from "../../firebase";
 import firebase from "firebase/compat/app";
 import { useNavigation } from "@react-navigation/native";
 
@@ -25,15 +26,11 @@ const Login = () => {
 
   let formattedNumber = `91${phoneNumber}`;
 
-  const sendVerification = async () => {
+  const sendVerification = () => {
     const phoneProvider = new firebase.auth.PhoneAuthProvider();
     let numberToSend = `+91${phoneNumber}`;
     let number = JSON.stringify(formattedNumber);
-    try {
-      await AsyncStorage.setItem("appLoggedNumber", number);
-    } catch (err) {
-      console.log(err, "Error");
-    }
+    AsyncStorage.setItem("appLoggedNumber", number);
     phoneProvider
       .verifyPhoneNumber(numberToSend, recaptchaVerifier.current)
       .then(setVerificationId);
@@ -51,16 +48,19 @@ const Login = () => {
       .signInWithCredential(credential)
       .then(() => {
         setOtp("");
+        setCheckOtp(false);
+        navigation.navigate("Home");
       })
       .catch((error) => {
-        alert(error);
+        console.log(error, "Firebase Auth Error");
+        setOtp("");
+        AsyncStorage.clear();
+        alert("Invalid OTP. Please enter correct OTP");
       });
-    setCheckOtp(false);
-    navigation.navigate("Home");
   };
 
   return (
-    <KeyboardAvoidingView style={styles.loginContainer} behavior="padding">
+    <KeyboardAvoidingView style={styles.loginContainer} behavior="height">
       <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
@@ -296,6 +296,7 @@ const styles = StyleSheet.create({
     padding: 30,
     justifyContent: "center",
     backgroundColor: "#fefcff",
+    height: "100%",
   },
   imageContainer: {
     width: "100%",
