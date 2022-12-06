@@ -60,10 +60,11 @@ const Login = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.loginContainer} behavior="height">
+    <KeyboardAvoidingView style={styles.loginContainer} behavior="padding">
       <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
+        attemptInvisibleVerification={true}
       />
       <Image
         source={require("./images/PersonalStylistlogo.png")}
